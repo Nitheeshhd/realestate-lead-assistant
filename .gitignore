@@ -10,3 +10,5 @@ node_modules/
 dist/
 .venv/
 coverage/
+/TDD.pdf
+/submission.zip
