@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+db.sqlite3
+*.sqlite3
+staticfiles/
+node_modules/
+dist/
+.venv/
+coverage/
