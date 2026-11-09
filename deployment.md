@@ -63,12 +63,12 @@ so everything works offline. Add the key to switch to the Claude tool-use agent.
 
 ## Render and Vercel deployment
 
-The app is deployed at the URLs above. The Render API is responding, but the live Vercel app currently cannot
-load projects because the Render CORS allowlist does not include the Vercel origin. In the Render web service's
-Environment tab, set both `CORS_ALLOWED_ORIGINS` and `CSRF_TRUSTED_ORIGINS` to
-`https://realestate-lead-assistant.vercel.app`, then redeploy. Verify that
+The deployed backend always includes `https://realestate-lead-assistant.vercel.app` in both its CORS and CSRF
+trusted origin lists. After deploying a backend change, verify that
 `https://realestate-lead-assistant.onrender.com/api/public/projects` returns JSON and that the Vercel home page
-loads the project selector without an error. The Render API root (`/`) is not a frontend page.
+loads the project selector without an error. If you use a different frontend origin, add it to both
+`CORS_ALLOWED_ORIGINS` and `CSRF_TRUSTED_ORIGINS` in Render, then redeploy. The Render API root (`/`) is not a
+frontend page.
 
 Use a persistent PostgreSQL database for Render; SQLite is for local development only.
 

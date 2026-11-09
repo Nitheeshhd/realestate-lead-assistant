@@ -47,10 +47,17 @@ STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ALLOWED_ORIGINS = [o.strip() for o in os.environ.get(
-    "CORS_ALLOWED_ORIGINS", "http://localhost:5173").split(",") if o.strip()]
-CSRF_TRUSTED_ORIGINS = [o.strip() for o in os.environ.get(
-    "CSRF_TRUSTED_ORIGINS", "http://localhost:5173").split(",") if o.strip()]
+PRODUCTION_FRONTEND_ORIGIN = "https://realestate-lead-assistant.vercel.app"
+
+
+def configured_origins(name):
+    configured = [o.strip() for o in os.environ.get(name, "http://localhost:5173").split(",") if o.strip()]
+    # Always allow the deployed frontend, even when Render has custom origin lists set.
+    return list(dict.fromkeys([*configured, PRODUCTION_FRONTEND_ORIGIN]))
+
+
+CORS_ALLOWED_ORIGINS = configured_origins("CORS_ALLOWED_ORIGINS")
+CSRF_TRUSTED_ORIGINS = configured_origins("CSRF_TRUSTED_ORIGINS")
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_SSL_REDIRECT = not DEBUG
 SECURE_HSTS_SECONDS = 31536000 if not DEBUG else 0
