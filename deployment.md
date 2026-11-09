@@ -1,6 +1,7 @@
 # deployment.md
 
-Repo: `<add GitHub URL>` · Live app: `<add live URL>`
+Repo: https://github.com/Nitheeshhd/realestate-lead-assistant · Live app: https://realestate-lead-assistant.vercel.app/
+Backend API: https://realestate-lead-assistant.onrender.com
 
 ## Run locally
 
@@ -60,14 +61,20 @@ npm run build
 Without `ANTHROPIC_API_KEY` the chat uses the built-in rule agent (same tools, same guardrails),
 so everything works offline. Add the key to switch to the Claude tool-use agent.
 
-## Deploy to Render and Vercel (manual; not yet deployed)
+## Render and Vercel deployment
 
-The app has not been deployed. Do not add a remote or push until you have created your GitHub repository.
+The app is deployed at the URLs above. The Render API is responding, but the live Vercel app currently cannot
+load projects because the Render CORS allowlist does not include the Vercel origin. In the Render web service's
+Environment tab, set both `CORS_ALLOWED_ORIGINS` and `CSRF_TRUSTED_ORIGINS` to
+`https://realestate-lead-assistant.vercel.app`, then redeploy. Verify that
+`https://realestate-lead-assistant.onrender.com/api/public/projects` returns JSON and that the Vercel home page
+loads the project selector without an error. The Render API root (`/`) is not a frontend page.
+
 Use a persistent PostgreSQL database for Render; SQLite is for local development only.
 
 ### Render backend
 
-1. Push `main` to your own GitHub repository using the commands in the final report.
+1. The source repository is https://github.com/Nitheeshhd/realestate-lead-assistant.
 2. In Render, choose **New + → PostgreSQL**. Create a database in the same region as the web service.
 3. Choose **New + → Web Service**, connect the repository, and set:
    - Root Directory: `backend`

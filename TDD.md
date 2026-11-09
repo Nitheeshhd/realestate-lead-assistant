@@ -1,8 +1,8 @@
 # Technical Design Document: Aangan, AI lead-response and site-visit booking assistant
 
-**GitHub:** `<add GitHub URL>` · **Live app:** `<add live URL>`
+**GitHub:** https://github.com/Nitheeshhd/realestate-lead-assistant · **Live app:** https://realestate-lead-assistant.vercel.app/
 
-TODO before submission: replace the GitHub and live app URL placeholders.
+Backend API: https://realestate-lead-assistant.onrender.com
 
 Client context: residential real-estate developer in Ahmedabad. The demo seeds two generic sample projects; the
 provided brief does not specify an apartment count, response-time SLA, project facts, or pricing. The assistant aims
